@@ -84,11 +84,17 @@ class FaceView: UIView {
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
     
-       UIColor.blueColor().set()
-       pathForCircleCenteredAtPoint(skullCenter, withRadius: skullRadius).stroke()
-       pathForEye(.Left).stroke()
+       UIColor.blackColor().set()
+       let skull = pathForCircleCenteredAtPoint(skullCenter, withRadius: skullRadius)
+        skull.stroke()
+        UIColor.yellowColor().set()
+        skull.fill()
+        UIColor.blackColor().set()
+        pathForEye(.Left).stroke()
        pathForEye(.Right).stroke()
        pathForMouth().stroke()
+   
+    
     }
     
 
