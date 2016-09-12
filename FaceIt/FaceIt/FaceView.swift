@@ -58,6 +58,17 @@ class FaceView: UIView {
         let eyeCenter = getEyeCenter(eye)
         return pathForCircleCenteredAtPoint(eyeCenter, withRadius: eyeRadius)
     }
+    private func pathForMouth() -> UIBezierPath
+    {
+        let mouthWidth = skullRadius / Ratios.SkullRadiusToMouthWidth
+        let mouthHeight = skullRadius / Ratios.SkullRadiusToMouthHeight
+        let mouthOffset = skullRadius / Ratios.SkullRadiusToMouthOffset
+        let mouthRect = CGRect(x: skullCenter.x - mouthWidth/2,
+                               y: skullCenter.y  + mouthOffset,
+                               width: mouthWidth,
+                               height: mouthHeight)
+       return UIBezierPath(rect: mouthRect)
+    }
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
@@ -66,6 +77,7 @@ class FaceView: UIView {
        pathForCircleCenteredAtPoint(skullCenter, withRadius: skullRadius).stroke()
        pathForEye(.Left).stroke()
        pathForEye(.Right).stroke()
+       pathForMouth().stroke()
     }
     
 
